@@ -1,0 +1,36 @@
+{
+  "manifest_version": 3,
+  "name": "1688 Refund Tool",
+  "version": "1.0.0",
+  "description": "Scan 1688 refund IDs and generate seller refund detail links.",
+  "permissions": [
+    "activeTab",
+    "storage",
+    "tabs",
+    "webNavigation"
+  ],
+  "action": {
+    "default_title": "1688 Refund Tool"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "http://*.1688.com/*",
+        "https://*.1688.com/*"
+      ],
+      "js": [
+        "content.js"
+      ],
+      "run_at": "document_idle",
+      "all_frames": true,
+      "match_about_blank": true
+    }
+  ],
+  "host_permissions": [
+    "http://*.1688.com/*",
+    "https://*.1688.com/*"
+  ]
+}
