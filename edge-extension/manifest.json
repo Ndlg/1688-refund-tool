@@ -1,13 +1,14 @@
 {
   "manifest_version": 3,
   "name": "1688 Refund Tool",
-  "version": "1.0.0",
-  "description": "Scan 1688 refund IDs and generate seller refund detail links.",
+  "version": "1.2.2",
+  "description": "打开 1688 待卖家确认收货订单并检查退货物流。",
   "permissions": [
     "activeTab",
     "storage",
     "tabs",
-    "webNavigation"
+    "webNavigation",
+    "scripting"
   ],
   "action": {
     "default_title": "1688 Refund Tool"

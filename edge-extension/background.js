@@ -40,5 +40,5 @@ chrome.runtime.onMessage.addListener((message, _sender, sendResponse) => {
 });
 
 chrome.action.onClicked.addListener(() => {
-  chrome.tabs.create({ url: chrome.runtime.getURL('popup.html') });
+  chrome.tabs.create({ url: chrome.runtime.getURL('workbench.html') });
 });

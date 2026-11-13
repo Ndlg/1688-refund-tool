@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="zh-CN"><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>1688 退货签收工作台</title>
+<style>
+:root{color-scheme:light;font:15px/1.55 "Microsoft YaHei",system-ui,sans-serif;color:#162538;background:#f4f7fb}
+body{max-width:1240px;margin:28px auto;padding:0 22px}h1{font-size:26px;margin:0 0 12px}
+section{background:#fff;border:1px solid #d8e1ec;border-radius:10px;padding:16px;margin:14px 0}
+.controls{display:flex;align-items:center;flex-wrap:wrap;gap:10px}button,select,#shop{font:inherit;padding:7px 11px;border:1px solid #bac9dc;border-radius:6px;background:white;color:inherit}button{cursor:pointer}button:disabled{opacity:.5;cursor:default}#run{background:#0758b6;border-color:#0758b6;color:white;font-weight:bold}
+#progress{margin:12px 0 0;white-space:pre-wrap}a{color:#0758b6}table{width:100%;border-collapse:collapse;font-size:14px}th,td{text-align:left;padding:8px;border-bottom:1px solid #e1e8f1;vertical-align:top}td:first-child,td:nth-child(2),td:nth-child(4){white-space:nowrap}.signed{color:#096239}.transit{color:#084d9b}.review{color:#985209}.failed{color:#a62b22}.muted,.none{color:#546579}#tableWrap{overflow:auto}
+#locationSettings{margin-top:12px}#locationKeywords{font:inherit;padding:7px 10px;border:1px solid #bac9dc;border-radius:6px;width:min(55ch,100%)}#settingsStatus{margin:5px 0 0;color:#546579}
+#selectionControls{margin-bottom:10px}#batchStatus{margin:6px 0;color:#546579;overflow-wrap:anywhere}#batchStatus:empty{display:none}
+th:first-child,td:first-child{width:1%;text-align:center}td:nth-child(3),td:nth-child(5){white-space:nowrap}
+input[type=checkbox]{width:16px;height:16px;accent-color:#0758b6;vertical-align:middle}
+tr.duplicate-waybill{background:#fff3cb}.waybill-duplicate{display:block;color:#783c00;font-weight:700}.waybill-number{display:block;white-space:nowrap}
+</style>
+<body><h1>1688 退货签收工作台</h1>
+<section aria-label="操作">
+<div class="controls"><label>店铺 <input id="shop" maxlength="100" placeholder="输入 1688 页头显示的店铺名"></label>
+<button id="run">打开待收货并检查签收</button><button id="scan">仅扫描订单</button><button id="stop" disabled>停止</button><button id="retry" disabled>重试未完成</button><button id="copy" disabled>复制结果</button><a href="popup.html">手动工具</a></div>
+<div id="locationSettings" class="controls"><label for="locationKeywords">签收地点关键词</label>
+<input id="locationKeywords" type="text" maxlength="300" placeholder="仓库名、门店名或地址片段，多个用逗号分隔">
+<button id="saveLocations">保存关键词</button></div>
+<p id="settingsStatus" aria-live="polite">按店铺保存，匹配最新签收或取件轨迹。</p>
+<p id="progress" role="status" aria-live="polite">就绪</p></section>
+<section id="tableWrap" aria-label="签收结果">
+<div id="selectionControls" class="controls">
+<label>签收结果 <select id="resultFilter"><option value="">全部</option><option>已签收</option><option>尚未签收</option><option>无物流</option><option>待核实</option><option>读取失败</option><option>未检查</option></select></label>
+<button id="openSelected" disabled>打开勾选的详情页</button>
+<button id="clearSelection" disabled>清除勾选</button>
+<span id="selectedCount" class="muted" aria-live="polite">已选 0 单</span>
+</div>
+<p id="batchStatus" role="status" aria-live="polite"></p>
+<table><thead><tr><th scope="col"><input id="selectVisible" type="checkbox" aria-label="全选当前列表" title="全选当前列表" disabled></th><th>退款单号</th><th>签收结果</th><th>地点匹配</th><th>最新轨迹时间</th><th>物流公司</th><th>退货运单号</th><th>轨迹 / 原因</th></tr></thead><tbody id="rows"></tbody></table></section>
+<script src="refund-core.js"></script><script src="inspect-refund.js"></script><script src="workbench.js"></script>
+</body></html>
